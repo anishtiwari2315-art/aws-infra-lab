@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWS Multi-Tier Web App | Anish Tiwari</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      text-align: center;
+      padding: 40px;
+      max-width: 800px;
+    }
+    .badge {
+      display: inline-block;
+      background: #ff9900;
+      color: #000;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 13px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #ff9900, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: #aaa;
+      margin-bottom: 30px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 30px 0;
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,153,0,0.3);
+      border-radius: 12px;
+      padding: 20px 16px;
+    }
+    .card h3 { color: #ff9900; margin-bottom: 6px; }
+    .card p { color: #ccc; font-size: 0.85rem; }
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    .tag {
+      background: rgba(255,153,0,0.15);
+      border: 1px solid #ff9900;
+      color: #ff9900;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+    }
+    footer { margin-top: 40px; color: #555; font-size: 0.8rem; }
+    footer a { color: #ff9900; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">LIVE ON AWS</div>
+    <h1>Automated Multi-Tier<br>Web Application</h1>
+    <p class="subtitle">Deployed on AWS with Terraform | VPC + ALB + EC2 + RDS + CloudWatch</p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>VPC</h3>
+        <p>Custom VPC with public &amp; private subnets across 2 AZs</p>
+      </div>
+      <div class="card">
+        <h3>ALB</h3>
+        <p>Application Load Balancer distributing traffic across EC2 instances</p>
+      </div>
+      <div class="card">
+        <h3>EC2 + ASG</h3>
+        <p>Auto Scaling Group with CPU-based scaling policy</p>
+      </div>
+      <div class="card">
+        <h3>RDS MySQL</h3>
+        <p>Managed MySQL database in isolated private subnet</p>
+      </div>
+      <div class="card">
+        <h3>CloudWatch</h3>
+        <p>Alarms and dashboard for CPU, latency &amp; health monitoring</p>
+      </div>
+      <div class="card">
+        <h3>Terraform</h3>
+        <p>Full IaC - deploy entire stack with 3 commands</p>
+      </div>
+    </div>
+
+    <div class="stack">
+      <span class="tag">AWS</span>
+      <span class="tag">Terraform</span>
+      <span class="tag">VPC</span>
+      <span class="tag">EC2</span>
+      <span class="tag">ALB</span>
+      <span class="tag">RDS</span>
+      <span class="tag">CloudWatch</span>
+      <span class="tag">Auto Scaling</span>
+      <span class="tag">NAT Gateway</span>
+      <span class="tag">Security Groups</span>
+    </div>
+
+    <footer>
+      <p>Built by <a href="https://github.com/anishtiwari2315-art" target="_blank">Anish Tiwari</a> &mdash; DevOps Engineer | Pune, India</p>
+      <p style="margin-top:6px">Instance ID: <span id="iid">Loading...</span></p>
+    </footer>
+  </div>
+  <script>
+    // In production on EC2, instance metadata is injected by user-data script
+    const meta = document.querySelector('meta[name="instance-id"]');
+    document.getElementById('iid').textContent = meta ? meta.content : 'N/A (running locally)';
+  </script>
+</body>
+</html>
